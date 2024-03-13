@@ -2,9 +2,11 @@ package org.campus02.consolein;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class DempApp {
     public static void main(String[] args) {
+
 
         int c;
         try (FileOutputStream fos = new FileOutputStream("D:\\Temp\\ETS24\\read-from-console.txt")) {
