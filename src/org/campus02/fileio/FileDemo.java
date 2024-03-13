@@ -21,13 +21,13 @@ public class FileDemo {
     public static long printAndGetFileSize(File f) {
         if (f.isFile()) {
             System.out.println(f.getName()+ ", " + f.length());
-            return f.length();
+            return f.length(); // Abbruchbedingung
         } else {
             File[] files = f.listFiles();
             int totalLength = 0;
             for (File e : files) {
                 System.out.println(e.getName()+ ", " + e.length());
-                totalLength += e.length();
+                totalLength += printAndGetFileSize(e);
             }
             return totalLength;
         }
