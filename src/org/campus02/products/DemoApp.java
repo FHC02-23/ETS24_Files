@@ -21,7 +21,7 @@ public class DemoApp {
 
 
         try {
-            pm.load("D:\\Temp\\ETS24\\products.rod");
+            pm.load("D:\\Temp\\ETS24\\products.prod");
         } catch (ProductLoadException e) {
             throw new RuntimeException(e);
         }
