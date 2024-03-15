@@ -1,9 +1,6 @@
 package org.campus02.addressbook;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -38,6 +35,25 @@ public class AddressbookManager {
             }
         } catch (IOException e) {
             throw new AddressLoadException("Fehler beim Laden von " + path, e);
+        }
+    }
+
+    public void exportToCsv(String path, String separator ) throws AddressExportException {
+        File f = new File(path);
+        if (f.exists())
+            throw new AddressExportFileAlreadyExistsException(path);
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+
+            for (Address a : addresses) {
+                String line = a.getFirstname() + separator + a.getLastname() + separator
+                                + a.getMobileNumber() + separator + a.geteMail();
+                bw.write(line);
+                bw.newLine();
+            }
+            bw.flush();
+        } catch (IOException e) {
+            throw new AddressExportException("fehler bei " + path, e);
         }
     }
 }
